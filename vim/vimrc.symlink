@@ -56,6 +56,9 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 filetype plugin indent on    " required
+set clipboard=unnamedplus    " for copy pasting between terminal
+
+set laststatus=2 " Always show statusline"
 
 "
 " Settings
