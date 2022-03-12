@@ -53,7 +53,7 @@ unset config_files updated_at
 # zprof
 
 # https://stackoverflow.com/questions/444951/zsh-stop-backward-kill-word-on-directory-delimiter
-WORDCHARS='*?~=&;!#$%^'
+WORDCHARS='*?~&;!#$%^'
 
 # https://askubuntu.com/questions/162247/why-does-ctrl-left-arrow-not-skip-words
 bindkey '^[[1;5D' backward-word
