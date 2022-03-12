@@ -20,6 +20,17 @@ Plug 'Raimondi/delimitMate'
 " fuzzy file finder
 Plug '/usr/local/opt/fzf'
 
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+
+Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
+Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
+Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
+Plug 'tyru/open-browser.vim' " opens url in browser
+
 " langs et al
 Plug 'cespare/vim-toml'
 Plug 'fatih/vim-nginx'
@@ -35,6 +46,11 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'puppetlabs/puppet-syntax-vim'
 Plug 'luochen1990/rainbow'
 Plug 'hashivim/vim-terraform'
+
+" Multiple Plug commands can be written in a single line using | separators
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'tpope/vim-sensible'
+
 
 " git integration
 Plug 'tpope/vim-fugitive'
@@ -89,6 +105,10 @@ set noshowmatch                 " Do not show matching brackets by flickering
 set noshowmode                  " We show the mode with airline or lightline
 set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
+set incsearch     				" show search matches as you type
+set title         				" change the terminal's title
+
+
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not when search pattern contains upper case characters
 set ttyfast
@@ -121,14 +141,19 @@ set formatoptions=qrn1
 " mail line wrapping
 au BufRead /tmp/mutt-* set tw=72
 
-set autoindent
+set autoindent    " always set autoindenting on
+set copyindent    " copy the previous indentation on autoindenting
+
 set complete-=i
 set showmatch
-set smarttab
+set smarttab      " insert tabs on the start of a line according to
+                    "    shiftwidth, not tabstop
 
 set et
 set tabstop=4
-set shiftwidth=4
+set shiftwidth=4  " number of spaces to use for autoindenting
+set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
+
 set expandtab
 
 set nrformats-=octal
@@ -443,7 +468,34 @@ set wildignore+=*.orig                           " Merge resolution files
 
 
 " ==================== terraform====================
+" terraform setup - Allow vim-terraform to align settings automatically with Tabularize.
 let g:terraform_align=1
+" Allow vim-terraform to automatically fold (hide until unfolded) sections of terraform code. Defaults to 0 which is off.
+"let g:terraform_fold_sections=1
+
+" Allow vim-terraform to automatically format *.tf and *.tfvars files with terraform fmt. You can also do this manually with the :TerraformFmt command.
+let g:terraform_fmt_on_save=1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" (Optional)Remove Info(Preview) window
+set completeopt-=preview
+
+" (Optional)Hide Info(Preview) window after completions
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+" (Optional) Enable terraform plan to be include in filter
+let g:syntastic_terraform_tffilter_plan = 1
+
+" (Optional) Default: 0, enable(1)/disable(0) plugin's keymapping
+let g:terraform_completion_keys = 1
+
+" (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
+let g:terraform_registry_module_completion = 0
+
 
 " ==================== FZF =========================
 
@@ -452,6 +504,10 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 nmap <C-b> :FZF<cr>
 imap <C-b> <esc>:FZF<cr>
+
+nnoremap <C-p> :Files<Cr>
+" setup fzf to use ripgrep by default
+let g:rg_command = 'rg --vimgrep -S'
 
 " ==================== Fugitive ====================
 nnoremap <leader>ga :Git add %:p<CR><CR>
@@ -562,6 +618,9 @@ function! Multiple_cursors_after()
     exe 'NeoCompleteUnlock'
   endif
 endfunction
+
+
+
 
 " ========= vim-better-whitespace ==================
 
