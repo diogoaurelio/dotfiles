@@ -62,6 +62,12 @@ bindkey '^[[1;5C' forward-word
 bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
 
+export PATH=/home/makina/.dotfiles/vim/vim.symlink/plugged/fzf/bin/fzf:$PATH
+
+plugins=(
+	fzf
+)
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
