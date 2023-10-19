@@ -2,4 +2,9 @@ Host *
   ServerAliveInterval 60
   StrictHostKeyChecking no
 
+Host cap-*
+    Hostname github.com
+    User git
+    IdentityFile ~/.ssh/dai_ed25519
+
 Include ~/.ssh/config.local
