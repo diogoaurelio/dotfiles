@@ -1,4 +1,20 @@
 
+export KUBECONFIG=/home/makina/.kube/config:/home/makina/development/mbr/infra/terraform/etc/.kube/config
+#alias
+source ~/.universal_aliases
+
+# Go
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# Rust
+# export PATH=$HOME/.cargo/bin:$PATH
+
+# k9s
+export PATH=$PATH:/home/makina/development/k9s/execs/
+
+
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims::$PATH"
@@ -7,5 +23,5 @@ export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
