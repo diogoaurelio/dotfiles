@@ -3,3 +3,5 @@ alias k="kubectl"
 alias localstack='aws --endpoint-url=http://localhost:4566'
 
 alias ll="ls -lah"
+alias ti="terraform init"
+
