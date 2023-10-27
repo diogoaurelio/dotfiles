@@ -5,3 +5,7 @@ alias localstack='aws --endpoint-url=http://localhost:4566'
 alias ll="ls -lah"
 alias ti="terraform init"
 
+alias kctx='kubectl config use-context $(kubectl config get-contexts -o name | fzf --prompt="Kubernetes Context> ")'
+
+alias awsps='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" /home/makina/development/mbr/infra/terraform/etc/.aws/config | fzf)'
+
