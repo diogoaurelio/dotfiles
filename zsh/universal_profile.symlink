@@ -15,13 +15,13 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=$PATH:/home/makina/development/k9s/execs/
 
 
+# zsh has a different init than bash
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
+#export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims::$PATH"
-export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
-
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
 #eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
